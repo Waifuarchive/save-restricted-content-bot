@@ -1,4 +1,16 @@
 import asyncio
+import sys
+
+# --- FIX FOR PYTHON 3.10+ / 3.14 ASYNCIO EVENT LOOP ---
+if sys.version_info >= (3, 10):
+    try:
+        asyncio.get_running_loop()
+    except RuntimeError:
+        asyncio.set_event_loop(asyncio.new_event_loop())
+# --------------------------------------------------------
+
+from pyrogram import Client, filters, enums, __version__ as pyrogram_version
+import asyncio
 import datetime
 import sys
 import os
