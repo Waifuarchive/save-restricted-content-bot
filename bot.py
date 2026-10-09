@@ -61,9 +61,9 @@ class Bot(Client):
 
     async def start(self):
         print(LOGO)
-
-     # Keep-alive is already handled by Gunicorn in the Render Start Command, skipping to avoid port conflicts.
-           logger.info("Web server is already running via Gunicorn.")
+        
+        # Keep-alive is already handled by Gunicorn in the Render Start Command.
+        logger.info("Web server is already running via Gunicorn.")
 
         # 2. FIX FOR FLOOD WAIT: Resilient Login Loop
         while True:
