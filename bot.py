@@ -62,18 +62,8 @@ class Bot(Client):
     async def start(self):
         print(LOGO)
 
-        # 1. Start keep-alive BEFORE attempting Telegram login
-        if keep_alive and not self._keep_alive_started:
-            try:
-                loop = asyncio.get_running_loop()
-                try:
-                    keep_alive(loop)
-                except TypeError:
-                    keep_alive()
-                self._keep_alive_started = True
-                logger.info("Keep-alive server started.")
-            except Exception as e:
-                logger.warning(f"Keep-alive failed: {e}")
+     # Keep-alive is already handled by Gunicorn in the Render Start Command, skipping to avoid port conflicts.
+           logger.info("Web server is already running via Gunicorn.")
 
         # 2. FIX FOR FLOOD WAIT: Resilient Login Loop
         while True:
